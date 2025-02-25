@@ -41,7 +41,7 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_contact_map);
-//        setToolbarTitle();
+
         initListButton();
         initSettingsButton();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activity_contact_map), (v, insets) -> {
@@ -150,11 +150,6 @@ public class MapActivity extends AppCompatActivity {
     }
 
 
-    /// Tool bar
-    private void setToolbarTitle(){
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("My Contact list");
-    }
 
 
     /// Nav Bar
