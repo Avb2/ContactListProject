@@ -121,7 +121,7 @@ public class MapActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         try {
-
+            locationManager.removeUpdates(networkListener);
             locationManager.removeUpdates(gpsListener);
         } catch (Exception e) {
             e.printStackTrace();
