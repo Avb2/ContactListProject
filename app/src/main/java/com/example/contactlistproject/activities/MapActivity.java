@@ -29,6 +29,7 @@ import com.example.contactlistproject.R;
 import com.google.android.material.snackbar.Snackbar;
 
 public class MapActivity extends AppCompatActivity {
+    Location currentBestLocation;
 
     LocationManager locationManager;
 
@@ -183,6 +184,17 @@ public class MapActivity extends AppCompatActivity {
     }
 
 
+    private boolean isBetterLocation(Location location) {
+        boolean isBetter = false;
+        if (currentBestLocation == null) {
+            isBetter = true;
+        } else if (location.getAccuracy() <= currentBestLocation.getAccuracy()) {
+            isBetter = true;
+        } else if (location.getTime() - currentBestLocation.getTime() > 5 * 60 * 1000) {
+            isBetter = true;
+        }
+        return isBetter;
+    }
 
 
     /// Nav Bar
