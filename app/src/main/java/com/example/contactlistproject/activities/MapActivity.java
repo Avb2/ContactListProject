@@ -120,6 +120,10 @@ public class MapActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
+        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return ;
+        }
         try {
             locationManager.removeUpdates(networkListener);
             locationManager.removeUpdates(gpsListener);
