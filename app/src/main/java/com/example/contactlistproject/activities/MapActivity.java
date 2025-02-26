@@ -95,7 +95,7 @@ public class MapActivity extends AppCompatActivity {
 
 
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, gpsListener);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, networkListener);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, networkListener);
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Error, Location not available", Toast.LENGTH_LONG).show();
 
