@@ -70,9 +70,13 @@ public class MapActivity extends AppCompatActivity {
                     TextView txtLongitude = (TextView) findViewById(R.id.textLongitude);
                     TextView txtAccuracy = (TextView) findViewById(R.id.textAccuracy);
 
-                    txtLatitude.setText(String.valueOf(location.getLatitude()));
-                    txtLongitude.setText(String.valueOf(location.getLongitude()));
-                    txtAccuracy.setText(String.valueOf(location.getAccuracy()));
+                    if (isBetterLocation(location)) {
+                        currentBestLocation = location;
+
+                        txtLatitude.setText(String.valueOf(currentBestLocation.getLatitude()));
+                        txtLongitude.setText(String.valueOf(currentBestLocation.getLongitude()));
+                        txtAccuracy.setText(String.valueOf(currentBestLocation.getAccuracy()));
+                    }
                 }
                 public void onStatusChanged(String provider, int status, Bundle extras){}
                 public void onProviderEnabled(String provider) {}
@@ -85,9 +89,14 @@ public class MapActivity extends AppCompatActivity {
                     TextView txtLongitude = (TextView) findViewById(R.id.textLongitude);
                     TextView txtAccuracy = (TextView) findViewById(R.id.textAccuracy);
 
-                    txtLatitude.setText(String.valueOf(location.getLatitude()));
-                    txtLongitude.setText(String.valueOf(location.getLongitude()));
-                    txtAccuracy.setText(String.valueOf(location.getAccuracy()));
+                    if (isBetterLocation(location)) {
+
+                        currentBestLocation = location;
+
+                        txtLatitude.setText(String.valueOf(currentBestLocation.getLatitude()));
+                        txtLongitude.setText(String.valueOf(currentBestLocation.getLongitude()));
+                        txtAccuracy.setText(String.valueOf(currentBestLocation.getAccuracy()));
+                    }
                 }
                 public void onStatusChanged(String provider, int status, Bundle extras){}
                 public void onProviderEnabled(String provider) {}
