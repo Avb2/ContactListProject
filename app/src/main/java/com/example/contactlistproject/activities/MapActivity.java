@@ -134,7 +134,46 @@ public class MapActivity extends AppCompatActivity {
         locationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                try {
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        if (ContextCompat.checkSelfPermission(MapActivity.this,
+                                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                                    MapActivity.this,
+                                    Manifest.permission.ACCESS_FINE_LOCATION
+                            )) {
+                                Snackbar.make(findViewById(R.id.activity_contact_map),
+                                                "MyContactList requires this permission to locate " +
+                                                        "your contacts", Snackbar.LENGTH_INDEFINITE)
+                                        .setAction("Ok", new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                ActivityCompat.requestPermissions(
+                                                        MapActivity.this,
+                                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                                        PERMISSION_REQUEST_LOCATION
+                                                );
 
+                                            }
+                                        })
+                                        .show();
+
+                            } else {
+                                ActivityCompat.requestPermissions(
+                                        MapActivity.this,
+                                        new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
+                                        PERMISSION_REQUEST_LOCATION);
+                            }
+                        } else {
+                            startLocationUpdates();
+                        }
+                    } else {
+                        startLocationUpdates();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(getBaseContext(), "Error requesting permission",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
