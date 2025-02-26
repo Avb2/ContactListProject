@@ -33,6 +33,7 @@ public class MapActivity extends AppCompatActivity {
     LocationManager locationManager;
 
     LocationListener gpsListener;
+    LocationListener networkListener;
     final int PERMISSION_REQUEST_LOCATION = 101;
 
 
@@ -113,6 +114,7 @@ public class MapActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         try {
+
             locationManager.removeUpdates(gpsListener);
         } catch (Exception e) {
             e.printStackTrace();
@@ -141,6 +143,25 @@ public class MapActivity extends AppCompatActivity {
                         public void onProviderEnabled(String provider) {}
                         public void onProviderDisabled(String provider){}
                     };
+
+                    networkListener = new LocationListener() {
+                        public void onLocationChanged(Location location) {
+                            TextView txtLatitude = (TextView) findViewById(R.id.textLatitude);
+                            TextView txtLongitude = (TextView) findViewById(R.id.textLongitude);
+                            TextView txtAccuracy = (TextView) findViewById(R.id.textAccuracy);
+
+                            txtLatitude.setText(String.valueOf(location.getLatitude()));
+                            txtLongitude.setText(String.valueOf(location.getLongitude()));
+                            txtAccuracy.setText(String.valueOf(location.getAccuracy()));
+                        }
+                        public void onStatusChanged(String provider, int status, Bundle extras){}
+                        public void onProviderEnabled(String provider) {}
+                        public void onProviderDisabled(String provider){}
+                    };
+
+
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, gpsListener);
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, networkListener);
                 } catch (Exception e) {
                     Toast.makeText(getBaseContext(), "Error, Location not available", Toast.LENGTH_LONG).show();
 
