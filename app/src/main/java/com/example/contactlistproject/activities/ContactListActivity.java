@@ -3,6 +3,7 @@ package com.example.contactlistproject.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -94,7 +95,7 @@ public class ContactListActivity extends AppCompatActivity {
         }
     }
 
-
+    /// Changes to home page to create new contact
     private void initAddContactButton(){
         Button newContact = findViewById(R.id.buttonAddContact);
         newContact.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +107,7 @@ public class ContactListActivity extends AppCompatActivity {
         });
     }
 
-
+    /// Enables deletion of contact
     private void initDeleteSwitch(ContactAdapter contactAdapter) {
         Switch s = findViewById(R.id.switchDelete);
         s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

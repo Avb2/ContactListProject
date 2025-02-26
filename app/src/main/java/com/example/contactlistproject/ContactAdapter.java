@@ -3,6 +3,7 @@ package com.example.contactlistproject;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ public class ContactAdapter extends RecyclerView.Adapter {
 
         public TextView email;
         public Button deleteButton;
+
 
         public ContactViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +85,9 @@ public class ContactAdapter extends RecyclerView.Adapter {
         cvh.getContactTextView().setText(contactData.get(position).getContactName());
         cvh.getPhoneTextView().setText(contactData.get(position).getPhoneNumber());
         cvh.getEmail().setText(contactData.get(position).geteMail());
+
+
+        cvh.itemView.setBackgroundColor(position % 2 == 0? Color.parseColor("#FFCCCC") : Color.parseColor("#CCCCFF"));
 
         if (isDeleting) {
             cvh.getDeleteButton().setVisibility(View.VISIBLE);
